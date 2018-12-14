@@ -24,8 +24,8 @@ class Day3
   end
 
   def self.unique_claim(claims, size = 1000)
-    uncontested_squares = self.process_claims(claims, size).flatten(1)
-      .keep_if { |square| square[1] == 1 }
+    uncontested_squares = self.process_claims(claims, size).flatten!(1)
+      .keep_if { |square | square[1] == 1 }
 
     unique_id, _ = claims.find do |id, claim|
       wide, tall = claim[:size]
@@ -36,11 +36,11 @@ class Day3
   end
 
   def self.parse_claim(text_claim)
-    id, coordinates, size = /^#(?<id>\d+)\s+@\s+(?<coordinates>\d+,\d+):\s+(?<size>\d+x\d+)/.match(text_claim).captures  
+    id, coordinates, size = /^#(?<id>\d+)\s+@\s+(?<coordinates>\d+,\d+):\s+(?<size>\d+x\d+)/.match(text_claim).captures
 
     [
       id.to_i,
-      { 
+      {
         coordinates: coordinates.split(',').map(&:to_i),
         size: size.split('x').map(&:to_i)
       }
@@ -59,7 +59,7 @@ class Day3
       .count
   end
 
-  private 
+  private
 
   def self.blank_fabric(size = 1000)
     Array.new(size, [nil, 0]).map { |x|  Array.new(size, [nil, 0]) }

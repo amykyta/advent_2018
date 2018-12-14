@@ -14,7 +14,8 @@ RSpec.describe Day3 do
 
   describe '.generate_claim_map' do
     it 'correctly tags squares from claims' do
-      expect(described_class.generate_claim_map(claims, 8)).to eq(
+      parsed_claims = described_class.parse_claims(claims)
+      expect(described_class.generate_claim_map(parsed_claims, 8)).to eq(
         [[0,0,0,0,0,0,0,0],
          [0,0,0,1,1,1,1,0],
          [0,0,0,1,1,1,1,0],
@@ -28,7 +29,8 @@ RSpec.describe Day3 do
 
   describe '.unique_claim' do
     it 'returns the id of the claim that doesnt overlap' do
-      expect(described_class.unique_claim(claims)).to eq 3
+      parsed_claims = described_class.parse_claims(claims)
+      expect(described_class.unique_claim(parsed_claims)).to eq 3
     end
   end
 end
